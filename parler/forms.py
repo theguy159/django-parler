@@ -77,14 +77,14 @@ class BaseTranslatableModelForm(forms.BaseModelForm):
             else:
                 self.language_code = current_language or get_language()
 
-        try:
-            get_supported_language_variant(self.language_code)
-        except LookupError:
-            # Instead of raising a ValidationError
-            raise ValueError(
-                "Translatable forms can't be initialized for the language '{0}', "
-                "that option does not exist in the 'LANGUAGES' setting.".format(self.language_code)
-            )
+        # try:
+        #     get_supported_language_variant(self.language_code)
+        # except LookupError:
+        #     # Instead of raising a ValidationError
+        #     raise ValueError(
+        #         "Translatable forms can't be initialized for the language '{0}', "
+        #         "that option does not exist in the 'LANGUAGES' setting.".format(self.language_code)
+        #     )
 
     def _get_translation_validation_exclusions(self, translation):
         exclude = ['master']
